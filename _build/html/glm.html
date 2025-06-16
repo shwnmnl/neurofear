@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Approach 1 - Univariate &#8212; Brainhack 2025 Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'glm';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Approach 2 - Predictive" href="ml.html" />
+    <link rel="prev" title="Brainhack School 2025 Project" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fearfaces.png" class="logo__image only-light" alt="Brainhack 2025 Project - Home"/>
+    <script>document.write(`<img src="_static/fearfaces.png" class="logo__image only-dark" alt="Brainhack 2025 Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Brainhack School 2025 Project
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Approach 1 - Univariate</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ml.html">Approach 2 - Predictive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rsa.html">Approach 3 - Representational</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/glm.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Approach 1 - Univariate</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Approach 1 - Univariate</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#single-run">Single run</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-data">Loading the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-design-matrix">Prepare design matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-and-fit-glm">Configure and fit GLM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-design-matrix">Check design matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-contrasts">Compute contrasts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">Plot results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-what-do-we-see">Checkpoint: What do we see?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anamtomical-regions">Anamtomical regions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-labels">Network labels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-runs">Multiple runs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#send-it">Send it</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomical-regions">Anatomical regions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Network labels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="approach-1-univariate">
+<h1>Approach 1 - Univariate<a class="headerlink" href="#approach-1-univariate" title="Link to this heading">#</a></h1>
+<p>A mass univariate approach is usually used to determine which parts of the brain respond to a task or stimulus during an experiment.</p>
+<p>The brain is parcellated into small volumes, called voxels, and you check them one by one for their association with the construct of interest. What you end up with is a (hopefully!) colorfully spotted map of a brain where spots indicate statistically significant associations.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>This approach often assumes a <strong>localizationist</strong> view of brain function, that is that certain somewhat circumscribed brain areas do different things.
+In contrast to a purely <em>anatomical</em> view, one can adopt a <em>functional</em> view, where the complex relations between brain regions are treated as distributed networks that participate in generating/modulating different experiences.</p>
+<p>This distinction can seem a bit odd right off the rip, but it will be relevant for interpreting the results of all three approaches individually and colletively (<em>foreshadowing</em>).</p>
+<p>For a more in-depth discussion of pro/anti-localizationsim, see <a class="reference external" href="https://direct.mit.edu/imag/article/doi/10.1162/imag_a_00138/120390/The-tip-of-the-iceberg-A-call-to-embrace-anti">Noble et al., 2024</a>.</p>
+</div>
+<p>As we’re working with fear, we’ll hope to rediscover regions such as insula, thalamus, periacqueductal gray matter, locus cerulus, parabrachial nucleus and nucleus of solitary tract, medial frontal gyrus, anterior cingulate, amygdala and hippocampus, hypothalamus and maybe some ventromedial or dorsolateral prefrontal cortex (Lai, 2019).</p>
+<p>To do so, we’ll follow these high-level steps:</p>
+<ul class="simple">
+<li><p>Load data</p></li>
+<li><p>Prepare and fit GLM model to data (with parametric modulation)</p></li>
+<li><p>Compute contrasts</p></li>
+<li><p>Visualize contrast maps</p></li>
+<li><p>Use Harvard-Oxford and Schaefer atlases to turn z-maps into a list of brain regions/networks associated with the contrasts</p></li>
+</ul>
+<p>We’ll do this twice, once on a single run and another time on all available runs, i.e. 3 runs.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="single-run">
+<h1>Single run<a class="headerlink" href="#single-run" title="Link to this heading">#</a></h1>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">plot_anat</span><span class="p">,</span>
+    <span class="n">plot_img</span><span class="p">,</span>
+    <span class="n">plot_stat_map</span><span class="p">,</span>
+    <span class="n">plot_design_matrix</span><span class="p">,</span>
+    <span class="n">show</span><span class="p">,</span>
+    <span class="n">view_img_on_surf</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">fetch_localizer_first_level</span><span class="p">,</span>
+    <span class="n">fetch_surf_fsaverage</span><span class="p">,</span>
+    <span class="n">fetch_atlas_schaefer_2018</span><span class="p">,</span>
+    <span class="n">fetch_atlas_harvard_oxford</span><span class="p">,</span>
+    <span class="n">load_fsaverage</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.image</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_img</span><span class="p">,</span> <span class="n">mean_img</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.surface</span><span class="w"> </span><span class="kn">import</span> <span class="n">SurfaceImage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.glm.first_level</span><span class="w"> </span><span class="kn">import</span> <span class="n">FirstLevelModel</span><span class="p">,</span> <span class="n">make_first_level_design_matrix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.maskers</span><span class="w"> </span><span class="kn">import</span> <span class="n">NiftiLabelsMasker</span>
+</pre></div>
+</div>
+</section>
+<section id="loading-the-data">
+<h2>Loading the data<a class="headerlink" href="#loading-the-data" title="Link to this heading">#</a></h2>
+<p>To conduct such an analysis, one needs two sources of data: the fMRI-acquired <code class="docutils literal notranslate"><span class="pre">brain_data</span></code> and the <code class="docutils literal notranslate"><span class="pre">events_data</span></code>, which describe how the experiment unfolded: i.e. which stimuli were presented when and what their fear rating was.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">category</span></code> column gets renamed to <code class="docutils literal notranslate"><span class="pre">trial_type</span></code>, because nilearn expects columns <code class="docutils literal notranslate"><span class="pre">onset</span></code>, <code class="docutils literal notranslate"><span class="pre">duration</span></code>, <code class="docutils literal notranslate"><span class="pre">trial_type</span></code>, and possibly <code class="docutils literal notranslate"><span class="pre">modulation</span></code>.</p>
+<p>We create a <code class="docutils literal notranslate"><span class="pre">modulation</span></code> column based on the mean-centered fear <code class="docutils literal notranslate"><span class="pre">rating</span></code> to use in the GLM to modulate or <em>weight</em> each animal category by their fear ratings.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brain_data</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;ManyFaces/derivatives/sub-09/func/sub-09_task-videos_run-1_preproc_space-MNI_bold.nii.gz&quot;</span><span class="p">)</span>
+<span class="n">events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ManyFaces/events sub-09_ses-01_task-video_run-1_events.tsv&quot;</span><span class="p">)</span>
+<span class="n">events</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;trial_type&quot;</span><span class="p">})</span> 
+<span class="n">events</span><span class="p">[</span><span class="s2">&quot;modulation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">events</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># Mean centered</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p></p></th>
+<th class="head text-left"><p>file</p></th>
+<th class="head text-left"><p>trial_type</p></th>
+<th class="head text-right"><p>onset</p></th>
+<th class="head text-right"><p>duration</p></th>
+<th class="head text-right"><p>rating</p></th>
+<th class="head text-right"><p>response_time</p></th>
+<th class="head text-right"><p>rating_order</p></th>
+<th class="head text-right"><p>button</p></th>
+<th class="head text-right"><p>modulation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-left"><p>millipede_6.mp4</p></td>
+<td class="text-left"><p>millipede</p></td>
+<td class="text-right"><p>11.0008</p></td>
+<td class="text-right"><p>3.00808</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>16.643</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>-0.44</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-left"><p>bird_20.mp4</p></td>
+<td class="text-left"><p>bird</p></td>
+<td class="text-right"><p>17.6436</p></td>
+<td class="text-right"><p>2.99128</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>21.2684</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>-1.44</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-left"><p>fish_7.mp4</p></td>
+<td class="text-left"><p>fish</p></td>
+<td class="text-right"><p>22.2685</p></td>
+<td class="text-right"><p>2.99186</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>26.8523</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>-0.44</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-left"><p>shark_17.mp4</p></td>
+<td class="text-left"><p>shark</p></td>
+<td class="text-right"><p>27.854</p></td>
+<td class="text-right"><p>3.00727</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>31.7698</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>-1.44</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-left"><p>tiger_14.mp4</p></td>
+<td class="text-left"><p>tiger</p></td>
+<td class="text-right"><p>32.7699</p></td>
+<td class="text-right"><p>3.00825</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>37.7621</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>-1.44</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="prepare-design-matrix">
+<h2>Prepare design matrix<a class="headerlink" href="#prepare-design-matrix" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TR</span> <span class="o">=</span> <span class="mf">0.867</span>                                      
+<span class="n">frame_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">fmri_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">TR</span>
+<span class="n">design_matrix</span> <span class="o">=</span> <span class="n">make_first_level_design_matrix</span><span class="p">(</span>
+    <span class="n">frame_times</span><span class="o">=</span><span class="n">frame_times</span><span class="p">,</span>
+    <span class="n">events</span><span class="o">=</span><span class="n">events</span><span class="p">,</span>
+    <span class="n">hrf_model</span><span class="o">=</span><span class="s2">&quot;glover&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="configure-and-fit-glm">
+<h2>Configure and fit GLM<a class="headerlink" href="#configure-and-fit-glm" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Config model</span>
+<span class="n">first_level_model</span> <span class="o">=</span> <span class="n">FirstLevelModel</span><span class="p">(</span>
+    <span class="n">t_r</span><span class="o">=</span><span class="mf">0.867</span><span class="p">,</span> <span class="c1"># taken from</span>
+    <span class="n">noise_model</span><span class="o">=</span><span class="s1">&#39;ar1&#39;</span><span class="p">,</span> 
+    <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+    <span class="n">high_pass</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;spm&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="c1"># Fit model</span>
+<span class="n">glm</span> <span class="o">=</span> <span class="n">first_level_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">,</span>
+                            <span class="n">events</span><span class="o">=</span><span class="n">events</span><span class="p">,</span>
+                            <span class="n">design_matrices</span><span class="o">=</span><span class="n">design_matrix</span>
+                            <span class="p">)</span>
+                        
+</pre></div>
+</div>
+</section>
+<section id="check-design-matrix">
+<h2>Check design matrix<a class="headerlink" href="#check-design-matrix" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">.</span><span class="n">design_matrices_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">design_matrix</span><span class="p">)</span>
+<span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="design-matrix-run1" src="_images/design_matrix_run-1.png" /></p>
+</section>
+<section id="compute-contrasts">
+<h2>Compute contrasts<a class="headerlink" href="#compute-contrasts" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">is_animal_col</span> <span class="o">=</span> <span class="o">~</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;drift_&quot;</span><span class="p">)</span>
+<span class="n">is_animal_col</span> <span class="o">&amp;=</span>  <span class="n">design_matrix</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s2">&quot;constant&quot;</span>
+<span class="n">animal_cols</span>   <span class="o">=</span> <span class="n">design_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">is_animal_col</span><span class="p">]</span>
+
+<span class="n">contrast_vec</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">contrast_vec</span><span class="p">[[</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">animal_cols</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">animal_cols</span><span class="p">)</span>
+<span class="n">z_map</span> <span class="o">=</span> <span class="n">glm</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">contrast_vec</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;z_score&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="plot-results">
+<h2>Plot results<a class="headerlink" href="#plot-results" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_stat_map</span><span class="p">(</span>
+    <span class="n">z_map</span><span class="p">,</span>
+    <span class="n">bg_img</span><span class="o">=</span><span class="n">anat_img</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">1.7</span><span class="p">,</span>  <span class="c1"># Tweak this depending on effect strength, here I&#39;m going low to help me &#39;see&#39; what&#39;s going on</span>
+    <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span>
+    <span class="n">cut_coords</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;High Fear &gt; Low Fear&#39;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">6.0</span>
+<span class="p">)</span>
+<span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="image" src="_images/glm-results-single-run-anat.png" /></p>
+</section>
+<section id="checkpoint-what-do-we-see">
+<h2>Checkpoint: What do we see?<a class="headerlink" href="#checkpoint-what-do-we-see" title="Link to this heading">#</a></h2>
+<p>Before drawing any conclusions, let’s summarize what was done and what question is being asked.</p>
+<p>We fit a first level GLM to some fMRI data for a single run on a single subject who saw animal videos and rated them on how fear-eliciting they were. Our GLM includes one regressor per animal category which was modulated (or <em>weighted</em>) by the fear rating.</p>
+<p>The question being asked by this analysis (specifically, it manifests in the contrasts) is: <em>Which voxels show a linear relationship with subjective fear, irrespective of animal category?</em></p>
+<p>And the answer can come in many forms, such as the map shown above, for instance.
+Note that a low statistical threshold (threshold = 1.7 ≈ p = 0.05ish (one tailed) or p = 0.09ish (two tailed)) was used to ease visualization of <em>what’s happening and where</em>.
+However, it’s a bit hard to interpret unless you have extensive experience looking at such maps (in addition to the interpretive difficulties associated with single subject/single run analyses in general).</p>
+<p>So another step one can take is to use different atlases, which are pre-computed brain maps with specific labels for different regions, and use those maps to figure out which anatomical structures our colorful blobs fall into.</p>
+<p>Here I’m skipping over a lot of detail in how one creates these maps, the different kinds that exist and so on, but the important thing is that there are maps that correspond to <strong>anatomical strutures</strong> and maps that correspond to <strong>data-driven networks</strong> put forth by previous researchers.</p>
+<p>It’s not immediately clear that one kind is better than another, so we’ll try both.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>When I say it’s not immediately clear, I do mean mostly <em>to me</em>, but the lack of clarity isn’t singularly a property of my lack of experience; it’s a property of the interpretive dance required to make sense of neuroimaging data (<em>re. localizationism</em>).</p>
+</div>
+<p>We’ll use the <strong>Harvard Oxford atlas</strong>, which covers the anatomical structures, as well as the <strong>Schaefer atlas</strong>, which covers functional networks.</p>
+<p><img alt="harvard" src="_images/glm-results-single-run-harvardoxford.png" />
+<img alt="schaefer" src="_images/glm-results-single-run-schaefer.png" /></p>
+<p>Returning to our expectations about which brain areas are recruited in fear-related processing, let’s check how well our top scoring regions match typically fear-related regions.</p>
+<blockquote>
+<div><p><em>Spoiler</em>: We didn’t hit any of the “major” fear regions, so I’m being <em>very</em> lax with my standards for fear relevance.</p>
+</div></blockquote>
+<section id="anamtomical-regions">
+<h3>Anamtomical regions<a class="headerlink" href="#anamtomical-regions" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Region</p></th>
+<th class="head"><p>Fear-Relevant?</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Paracingulate gyrus</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Overlaps anterior cingulate; emotion regulation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Frontal orbital cortex</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>vmPFC; involved in extinction, valuation</p></td>
+</tr>
+<tr class="row-even"><td><p>Inferior frontal gyrus (pars triangularis)</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Cognitive control; not core fear region</p></td>
+</tr>
+<tr class="row-odd"><td><p>Frontal operculum / Frontal pole</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Variable role; adjacent to insula/PFC</p></td>
+</tr>
+<tr class="row-even"><td><p>Middle &amp; inferior temporal gyri</p></td>
+<td><p>⚠️ Unclear</p></td>
+<td><p>Semantic and emotional processing</p></td>
+</tr>
+<tr class="row-odd"><td><p>Temporal fusiform cortex (posterior)</p></td>
+<td><p>❌ No</p></td>
+<td><p>Visual/object processing</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>So none of the important subcortical regions (amygdala, PAG, hypothalamus), but there does seem to be consistent engagement of prefrontal regions associated with integration/regulation.</p>
+</div></blockquote>
+</section>
+<section id="network-labels">
+<h3>Network labels<a class="headerlink" href="#network-labels" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Network</p></th>
+<th class="head"><p>Fear-Relevant?</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RH_Default_PFCv_2</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>vmPFC; emotion regulation</p></td>
+</tr>
+<tr class="row-odd"><td><p>RH_SalVentAttn_Med_2</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Insula/dACC; salience detection</p></td>
+</tr>
+<tr class="row-even"><td><p>LH_Default_PFC_1 / _2</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Medial PFC; regulation</p></td>
+</tr>
+<tr class="row-odd"><td><p>RH_Cont_PFCl / PFCmp series</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Lateral control; cognitive modulation</p></td>
+</tr>
+<tr class="row-even"><td><p>LH_SalVentAttn_Med_3</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Likely anterior insula</p></td>
+</tr>
+<tr class="row-odd"><td><p>LH_DorsAttn_PrCv_1</p></td>
+<td><p>❌ No</p></td>
+<td><p>Spatial attention, not fear-related</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>Default Mode and Salience networks make sense as “fear-related” systems, due to their implications in top-down modulation and emotional appraisal. Not sure what to make of the control network; could be higher-order regulation or an artifact of the cognitive load of the task they were doing.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="multiple-runs">
+<h1>Multiple runs<a class="headerlink" href="#multiple-runs" title="Link to this heading">#</a></h1>
+<section id="send-it">
+<h2>Send it<a class="headerlink" href="#send-it" title="Link to this heading">#</a></h2>
+<p>Without breaking all this up into separate codeblocks, I’ll still walk through the high-level steps:</p>
+<ul class="simple">
+<li><p>Loop through the <code class="docutils literal notranslate"><span class="pre">brain_data</span></code> and <code class="docutils literal notranslate"><span class="pre">events</span></code> file for all runs, constructing design matrices as we go and collecting them in a list (as well as the loaded fmri images)</p></li>
+<li><p>Construct and fit a first level GLM on the all the runs (<em>nilearn lets you do this indiscriminately, so the code looks the same as before!</em>)</p></li>
+<li><p>Prepare and compute contrasts</p></li>
+<li><p>Plot results (maps, region scores)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TR</span> <span class="o">=</span> <span class="mf">0.867</span> 
+<span class="n">fmri_imgs</span>       <span class="o">=</span> <span class="p">[]</span>     
+<span class="n">design_matrices</span> <span class="o">=</span> <span class="p">[]</span>     
+
+<span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> 
+    <span class="n">fmri_img</span>   <span class="o">=</span> <span class="n">load_img</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ManyFaces/derivatives/sub-09/func/sub-09_task-videos_run-</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">1d</span><span class="si">}</span><span class="s2">_preproc_space-MNI_bold.nii.gz&quot;</span><span class="p">)</span>
+    <span class="n">frame_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">fmri_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">TR</span>
+
+    <span class="n">ev</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ManyFaces/events/sub-09_ses-01_task-video_run-</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">1d</span><span class="si">}</span><span class="s2">_events.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ev</span><span class="p">[</span><span class="s2">&quot;modulation&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">ev</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">ev</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
+    <span class="n">ev</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">ev</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span>          
+    <span class="n">ev</span> <span class="o">=</span> <span class="n">ev</span><span class="p">[[</span><span class="s2">&quot;onset&quot;</span><span class="p">,</span> <span class="s2">&quot;duration&quot;</span><span class="p">,</span> <span class="s2">&quot;trial_type&quot;</span><span class="p">,</span> <span class="s2">&quot;modulation&quot;</span><span class="p">]]</span> 
+
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">make_first_level_design_matrix</span><span class="p">(</span>
+        <span class="n">frame_times</span><span class="p">,</span> 
+        <span class="n">events</span><span class="o">=</span><span class="n">ev</span><span class="p">,</span> 
+        <span class="n">hrf_model</span><span class="o">=</span><span class="s2">&quot;glover&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">fmri_imgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">)</span>
+    <span class="n">design_matrices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dm</span><span class="p">)</span>
+
+<span class="n">glm_all_runs</span> <span class="o">=</span> <span class="n">FirstLevelModel</span><span class="p">(</span>
+    <span class="n">t_r</span><span class="o">=</span><span class="n">TR</span><span class="p">,</span>
+    <span class="n">smoothing_fwhm</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">high_pass</span><span class="o">=</span><span class="mf">0.01</span>
+<span class="p">)</span>
+<span class="n">glm_all_runs</span> <span class="o">=</span> <span class="n">glm_all_runs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fmri_imgs</span><span class="p">,</span> <span class="n">design_matrices</span><span class="o">=</span><span class="n">design_matrices</span><span class="p">)</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="n">design_matrices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">is_animal_col</span> <span class="o">=</span> <span class="o">~</span><span class="n">cols</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;drift_&quot;</span><span class="p">)</span>
+<span class="n">is_animal_col</span> <span class="o">&amp;=</span> <span class="n">cols</span> <span class="o">!=</span> <span class="s2">&quot;constant&quot;</span>
+<span class="n">animal_cols</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="n">is_animal_col</span><span class="p">]</span>
+
+<span class="n">c_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">))</span> 
+<span class="n">c_vec</span><span class="p">[[</span><span class="n">cols</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">animal_cols</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">animal_cols</span><span class="p">)</span>
+<span class="n">contrast_val</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_vec</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">fmri_imgs</span><span class="p">)</span> 
+
+<span class="n">z_map_all_runs</span> <span class="o">=</span> <span class="n">glm_all_runs</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">contrast_val</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;z_score&quot;</span><span class="p">)</span>
+
+<span class="n">plot_stat_map</span><span class="p">(</span>
+    <span class="n">z_map_all_runs</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">2.3</span><span class="p">,</span>  <span class="c1"># higher threshold this time cuz more runs means more signal (maybe) but we&#39;ll still be able to see what&#39;s going on</span>
+    <span class="n">bg_img</span><span class="o">=</span><span class="n">anat_img</span><span class="p">,</span> 
+    <span class="n">display_mode</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">,</span>
+    <span class="n">cut_coords</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Fear-rating modulation (fixed effects across 4 runs)&quot;</span>
+<span class="p">)</span>
+<span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="glm-all-runs" src="_images/glm-results-all-runs-anat.png" /></p>
+<p>An interactive version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">view</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">view_img</span><span class="p">(</span><span class="n">z_map_all_runs</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">2.3</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anat_img</span><span class="p">)</span>
+<span class="n">view</span><span class="o">.</span><span class="n">save_as_html</span><span class="p">(</span><span class="s2">&quot;fearmap_view.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="position: relative; width: 100%; padding-top: 56.25%;">
+  <iframe src="_static/fearmap_view.html"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+  </iframe>
+</div>
+<p>Like before, we’ll get our anatomical/networks region labels and try to interpret them.</p>
+<p><img alt="all-runs-ho" src="_images/glm-results-all-runs-harvardoxford.png" />
+<img alt="all-runs-schae" src="_images/glm-results-all-runs-schaefer.png" /></p>
+<section id="anatomical-regions">
+<h3>Anatomical regions<a class="headerlink" href="#anatomical-regions" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Region</p></th>
+<th class="head"><p>Fear-Relevant?</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Frontal opercular cortex</strong></p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Adjacent to anterior insula; may relay interoceptive &amp; salience signals.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inferior frontal gyrus (pars triangularis)</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Cognitive control / reappraisal; not core fear site.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Paracingulate gyrus</strong> (dorsal ACC)</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Part of medial PFC/ACC circuit regulating fear and conflict.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Middle frontal gyrus</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>DLPFC, implicated in top-down control of emotion.</p></td>
+</tr>
+<tr class="row-even"><td><p>Inferior frontal gyrus (pars opercularis)</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Similar control / speech functions; weak direct fear link.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Anterior cingulate gyrus</strong></p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Core of salience / fear appraisal network.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Frontal orbital cortex</strong> (vmPFC)</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Valuation, extinction, autonomic regulation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Juxtapositional lobule (SMA)</p></td>
+<td><p>⚠️ Unclear</p></td>
+<td><p>Motor preparation; occasionally active in threat responses.</p></td>
+</tr>
+<tr class="row-even"><td><p>Superior frontal gyrus</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Medial SFG overlaps pre-SMA; indirect role.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Superior parietal lobule</p></td>
+<td><p>❌ No</p></td>
+<td><p>More visuospatial/attention than fear.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>So basically same before (but with higher z values, which can be found in the notebook, they aren’t pretty enough to include here).</p>
+</div></blockquote>
+</section>
+<section id="id1">
+<h3>Network labels<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Network</p></th>
+<th class="head"><p>Fear-Relevant?</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RH_Default_PFCv_2</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Ventral mPFC / vmPFC.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RH_SalVentAttn_Med_2</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Anterior insula + dACC (salience).</p></td>
+</tr>
+<tr class="row-even"><td><p>LH_Default_PFC_2</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Medial PFC.</p></td>
+</tr>
+<tr class="row-odd"><td><p>LH_Default_PFC_1</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Medial PFC.</p></td>
+</tr>
+<tr class="row-even"><td><p>RH_Cont_PFCl_2</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Lateral control PFC (reappraisal).</p></td>
+</tr>
+<tr class="row-odd"><td><p>LH_SalVentAttn_Med_3</p></td>
+<td><p>✅ Yes</p></td>
+<td><p>Insula/ACC zone.</p></td>
+</tr>
+<tr class="row-even"><td><p>RH_Cont_PFCmp_1</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Mid-lat PFC control.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RH_Cont_PFCl_4</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Same.</p></td>
+</tr>
+<tr class="row-even"><td><p>RH_Cont_PFCl_3</p></td>
+<td><p>⚠️ Possibly</p></td>
+<td><p>Same.</p></td>
+</tr>
+<tr class="row-odd"><td><p>LH_DorsAttn_PrCv_1</p></td>
+<td><p>❌ No</p></td>
+<td><p>Dorsal attention / premotor.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>Pretty much same as well, also with higher z values.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Lai, Chien-Han. (2018) <em>Fear network model in panic disorder: the past and the future.</em> <strong>Psychiatry Investigation 16,1.</strong></p></li>
+<li><p>Noble, S., Curtiss, J., Pessoa, L., &amp; Scheinost, D. (2024). <em>The tip of the iceberg: A call to embrace anti-localizationism in human neuroscience research.</em> <strong>Imaging Neuroscience, 2, 1-10.</strong></p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Brainhack School 2025 Project</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ml.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Approach 2 - Predictive</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Approach 1 - Univariate</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#single-run">Single run</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-data">Loading the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-design-matrix">Prepare design matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-and-fit-glm">Configure and fit GLM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-design-matrix">Check design matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-contrasts">Compute contrasts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">Plot results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-what-do-we-see">Checkpoint: What do we see?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anamtomical-regions">Anamtomical regions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-labels">Network labels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-runs">Multiple runs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#send-it">Send it</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomical-regions">Anatomical regions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Network labels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Shawn Manuel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
